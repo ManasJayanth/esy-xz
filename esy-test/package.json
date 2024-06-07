@@ -1,0 +1,8 @@
+{
+  "esy": {
+    "build": "ls -R #{self.install}"
+  },
+  "dependencies": {
+    "esy-xz": "*"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "esy-xz",
+  "version": "5.6.2000",
+  "description": "esy-xz packaged for esy",
+  "source": "https://github.com/tukaani-project/xz/releases/download/v5.6.2/xz-5.6.2.tar.gz#sha256:8bfd20c0e1d86f0402f2497cfa71c6ab62d4cd35fd704276e3140bfb71414519",
+  "override": {
+    "build": [
+      "find ./ -exec touch -t 200905010101 {} +",
+      "./configure #{os == 'windows' ? '--host x86_64-w64-mingw32': ''} #{os == 'darwin' ? '--disable-dependency-tracking': ''} --disable-silent-rules --disable-nls --prefix=#{self.install}",
+      "make -j#{self.jobs}"
+    ],
+    "install": "make install",
+    "buildsInSource": true,
+    "exportedEnv": {
+      "PKG_CONFIG_PATH": {
+        "val": "#{self.lib / 'pkgconfig'}",
+        "scope": "global"
+      }
+    },
+    "dependencies": {}
+  }
+}
